@@ -1,5 +1,4 @@
 #include "database.h"
-#include "merge_sort.h"
 
 int id_uniqueness_check(int id, Student_t *p_database[50]) {
     for (int i = 0; i < 50; i++) {
@@ -52,11 +51,10 @@ void delete_student(Student_t *p_database[50], int number_of_students) {
 }
 
 void student_info(Student_t *p_database[50]) {
-    puts("Enter student's id");
     int id;
-    scanf("%d", &id);
+    scanf("Enter student's id\n%d", &id);
     int index = id_index(id, p_database);
-    if (index != -1) {
+    if (index != -1) {                                          // <---- Change to just if (index == -1)
         char *name = p_database[index]->name;
         char *student_id = p_database[index]->student_id;
         float average_grade = p_database[index]->average_grade;
