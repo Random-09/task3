@@ -3,4 +3,4 @@ project(task3 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(task3 main.c)
+add_executable(task3 main.c database.c database.h merge_sort.c merge_sort.h)

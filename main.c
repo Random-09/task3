@@ -1,93 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-    int id;
-    char *name;
-    char *student_id;
-    float average_grade;
-} Student_t;
-
-enum choice {
-    ADD_STUDENT = 1,
-    DELETE_STUDENT,
-    STUDENT_INFO,
-    PRINT_AVERAGE_GRADES,
-    EXIT
-};
-
-int id_uniqueness_check(int id, Student_t *p_database[50]) {
-    for (int i = 0; i < 50; i++) {
-        if (p_database[i]->id == id)
-            return 0;
-    }
-    return 1;
-}
-
-int id_index(int id, Student_t *p_database[50]) {
-    for (int i = 0; i < 50; i++) {
-        if (p_database[i]->id == id)
-            return i;
-    }
-    return -1;
-}
-
-void add_student(Student_t *p_database[50], int current_index) {
-    int id;
-    char name[16], student_id[7];
-    float average_grade;
-    printf("Enter unique id of the student.");
-    scanf("%d", &id);
-    printf("Enter student's name");
-    gets(name);
-    printf("Enter student id");
-    gets(student_id);
-    printf("Enter average grade");
-    scanf("%f", &average_grade);
-    if (id_uniqueness_check(id, p_database)) {
-        p_database[current_index]->id = id;
-        p_database[current_index]->name = name;
-        p_database[current_index]->student_id = student_id;
-        p_database[current_index]->average_grade = average_grade;
-    } else
-        printf("ID is not unique");                        // <---- Test in a while loop
-}
-
-void delete_student(Student_t *p_database[50], int number_of_students) {
-    printf("Enter unique ID of the student");
-    int id;
-    scanf("%d", &id);
-    int index = id_index(id, p_database);
-    if (index != -1) {
-        for (int i = index; i < number_of_students - 1; i++) {
-            p_database[i] = p_database[i + 1];
-        }
-    } else {
-        printf("ID not found in this database");
-        exit(EXIT_FAILURE);                                 // <---- Maybe continue while loop
-    }
-}
-
-void student_info(Student_t *p_database[50]) {
-    printf("Enter student's id");
-    int id;
-    scanf("%d", &id);
-    int index = id_index(id, p_database);
-    if (index != -1) {
-        char *name = p_database[index]->name;
-        char *student_id = p_database[index]->student_id;
-        float average_grade = p_database[index]->average_grade;
-        printf("Student with id: %d\nName: %s\nStudent id:%s\nAverage grade%f\n",
-               id, name, student_id, average_grade);
-    } else {
-        printf("ID not found in this database");
-        exit(EXIT_FAILURE);                                 // <---- Maybe continue while loop
-    }
-}
-
-void print_average_grades() {
-
-}
+#include "database.h"
 
 
 int main() {
@@ -109,7 +22,7 @@ int main() {
             case STUDENT_INFO:
                 student_info(database);
             case PRINT_AVERAGE_GRADES:
-                print_average_grades();
+                print_average_grades(database, number_of_students);
             case EXIT:
                 exit_flag = 1;
             default:
