@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "database.h"
-
+#include "merge_sort.h"
 
 int main() {
     int exit_flag = 0;
     int number_of_students = 0;
     Student_t *database[50];
     while (!exit_flag) {
-        printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit");
+        printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
         char input;
         scanf("%c", &input);
         int choice = strtol(&input, NULL, 10);
@@ -22,6 +22,7 @@ int main() {
             case STUDENT_INFO:
                 student_info(database);
             case PRINT_AVERAGE_GRADES:
+                merge_sort(database, number_of_students);
                 print_average_grades(database, number_of_students);
             case EXIT:
                 exit_flag = 1;
@@ -33,6 +34,7 @@ int main() {
 
 
 // TODO
+// Разобраться с поинтерами
 // Проверка на дурака везде, как в main
 
 
