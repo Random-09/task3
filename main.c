@@ -6,7 +6,7 @@
 int main() {
     int exit_flag = 0;
     int number_of_students = 0;
-    Student_t *database[50];
+    Student_t database[50];
     while (!exit_flag) {
         printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
         char input;

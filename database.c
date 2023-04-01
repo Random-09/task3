@@ -1,8 +1,9 @@
 #include "database.h"
 
-int id_uniqueness_check(int id, Student_t *p_database[50]) {
-    for (int i = 0; i < 50; i++) {
-        if (p_database[i]->id == id)
+int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
+    for (int i = 0; i < number_of_students; i++) {
+        printf("%d", i);
+        if (p_database[i].id == id)
             return 0;
     }
     return 1;
@@ -16,21 +17,23 @@ int id_index(int id, Student_t *p_database[50]) {
     return -1;
 }
 
-void add_student(Student_t *p_database[50], int current_index) {
+void add_student(Student_t *p_database, int number_of_students) {
     int id;
     char name[16], student_id[7];
     float average_grade;
-    scanf("Enter unique id of the student\n%d", &id);
+    puts("Enter unique id of the student");
+    scanf("%d", &id);
     puts("Enter student's name");
-    gets(name);
+    scanf("%s", name);
     puts("Enter student id");
-    gets(student_id);
-    scanf("Enter average grade\n%f", &average_grade);
-    if (id_uniqueness_check(id, p_database)) {
-        p_database[current_index]->id = id;
-        p_database[current_index]->name = name;
-        p_database[current_index]->student_id = student_id;
-        p_database[current_index]->average_grade = average_grade;
+    scanf("%s", student_id);
+    puts("Enter average grade");
+    scanf("%f", &average_grade);
+    if (id_uniqueness_check(id, p_database, number_of_students)) {
+        p_database[number_of_students].id = id;
+        p_database[number_of_students].name = name;
+        p_database[number_of_students].student_id = student_id;
+        p_database[number_of_students].average_grade = average_grade;
     } else
         puts("ID is not unique");                        // <---- Test in a while loop
 }
