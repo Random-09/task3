@@ -1,33 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "database.h"
 #include "merge_sort.h"
 
 int main() {
-    int exit_flag = 0;
+    int running = true;
     int number_of_students = 0;
     Student_t database[50];
-    while (!exit_flag) {
+    char input;
+    int choice;
+    while (running) {
         printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
-        char input;
-        scanf("%c", &input);
-        int choice = strtol(&input, NULL, 10);
+        scanf("%s", &input);
+        choice = strtol(&input, NULL, 10);
         switch (choice) {
             case ADD_STUDENT:
                 add_student(database, number_of_students);
                 number_of_students++;
+                break;
             case DELETE_STUDENT:
                 delete_student(database, number_of_students);
                 number_of_students--;
+                break;
             case STUDENT_INFO:
                 student_info(database);
+                break;
             case PRINT_AVERAGE_GRADES:
                 merge_sort(database, number_of_students);
                 print_average_grades(database, number_of_students);
+                break;
             case EXIT:
-                exit_flag = 1;
+                running = false;
+                break;
             default:
-                printf("Incorrect input");
+                puts("Incorrect input");
+                break;
         }
     }
 }

@@ -9,9 +9,9 @@ int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
     return 1;
 }
 
-int id_index(int id, Student_t *p_database[50]) {
+int id_index(int id, Student_t *p_database) {
     for (int i = 0; i < 50; i++) {
-        if (p_database[i]->id == id)
+        if (p_database[i].id == id)
             return i;
     }
     return -1;
@@ -29,6 +29,7 @@ void add_student(Student_t *p_database, int number_of_students) {
     scanf("%s", student_id);
     puts("Enter average grade");
     scanf("%f", &average_grade);
+    printf("!%f!\n", average_grade);
     if (id_uniqueness_check(id, p_database, number_of_students)) {
         p_database[number_of_students].id = id;
         p_database[number_of_students].name = name;
@@ -38,7 +39,7 @@ void add_student(Student_t *p_database, int number_of_students) {
         puts("ID is not unique");                        // <---- Test in a while loop
 }
 
-void delete_student(Student_t *p_database[50], int number_of_students) {
+void delete_student(Student_t *p_database, int number_of_students) {
     puts("Enter unique ID of the student");
     int id;
     scanf("%d", &id);
@@ -53,14 +54,14 @@ void delete_student(Student_t *p_database[50], int number_of_students) {
     }
 }
 
-void student_info(Student_t *p_database[50]) {
+void student_info(Student_t *p_database) {
     int id;
     scanf("Enter student's id\n%d", &id);
     int index = id_index(id, p_database);
     if (index != -1) {                                          // <---- Change to just if (index == -1)
-        char *name = p_database[index]->name;
-        char *student_id = p_database[index]->student_id;
-        float average_grade = p_database[index]->average_grade;
+        char *name = p_database[index].name;
+        char *student_id = p_database[index].student_id;
+        float average_grade = p_database[index].average_grade;
         printf("Student with id: %d\nName: %s\nStudent id:%s\nAverage grade%f\n",
                id, name, student_id, average_grade);
     } else {
@@ -69,10 +70,10 @@ void student_info(Student_t *p_database[50]) {
     }
 }
 
-void print_average_grades(Student_t *p_database[50], int number_of_students) {
+void print_average_grades(Student_t *p_database, int number_of_students) {
     for (int i = 0; i < number_of_students; i++) {
-        char *name = p_database[i]->name;
-        float average_grade = p_database[i]->average_grade;
+        char *name = p_database[i].name;
+        float average_grade = p_database[i].average_grade;
         printf("%s: %f", name, average_grade);
     }
 }
