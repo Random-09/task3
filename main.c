@@ -12,18 +12,17 @@ int main() {
     char input;
     int choice;
     while (running) {
-        if (number_of_students == DB_CAPACITY)                  // <---- check for full capacity!
-            printf("Database is full!");
+        printf("Total number of students: %d\n", number_of_students);
         printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
         scanf("%s", &input);
         choice = strtol(&input, NULL, 10);
         switch (choice) {
             case ADD_STUDENT:
-                add_student(database, number_of_students);
+                add_student(database, &number_of_students);
                 number_of_students++;
                 break;
             case DELETE_STUDENT:
-                delete_student(database);
+                delete_student(database, &number_of_students);
                 number_of_students--;
                 break;
             case STUDENT_INFO:
@@ -31,7 +30,7 @@ int main() {
                 break;
             case PRINT_AVERAGE_GRADES:
                 merge_sort(database, 0, number_of_students - 1);
-                print_average_grades(database, number_of_students);
+                print_average_grades(database, &number_of_students);
                 break;
             case EXIT:
                 running = false;

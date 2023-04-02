@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/kvasa/Desktop/Studying/Semester_2/Informatics/task3/database.c" "CMakeFiles/task3.dir/database.c.obj" "gcc" "CMakeFiles/task3.dir/database.c.obj.d"
-  "C:/Users/kvasa/Desktop/Studying/Semester_2/Informatics/task3/main.c" "CMakeFiles/task3.dir/main.c.obj" "gcc" "CMakeFiles/task3.dir/main.c.obj.d"
-  "C:/Users/kvasa/Desktop/Studying/Semester_2/Informatics/task3/merge_sort.c" "CMakeFiles/task3.dir/merge_sort.c.obj" "gcc" "CMakeFiles/task3.dir/merge_sort.c.obj.d"
+  "C:/Users/kvasa/Cprojects/task3/database.c" "CMakeFiles/task3.dir/database.c.obj" "gcc" "CMakeFiles/task3.dir/database.c.obj.d"
+  "C:/Users/kvasa/Cprojects/task3/main.c" "CMakeFiles/task3.dir/main.c.obj" "gcc" "CMakeFiles/task3.dir/main.c.obj.d"
+  "C:/Users/kvasa/Cprojects/task3/merge_sort.c" "CMakeFiles/task3.dir/merge_sort.c.obj" "gcc" "CMakeFiles/task3.dir/merge_sort.c.obj.d"
   )
 
 # Targets to which this target links.
