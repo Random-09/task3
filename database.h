@@ -9,7 +9,7 @@
 typedef struct {
     int id;
     char *name;
-    char *student_id;
+    char *student_card_number;
     float average_grade;
 } Student_t;
 

@@ -19,25 +19,23 @@ int id_index(int id, Student_t *p_database) {
 void add_student(Student_t *p_database, int number_of_students) {
     int id;
     char *name;
-    char *student_id;
+    char *student_card_number;
     name = (char *) malloc(10 * sizeof(char ));
-    student_id = (char *) malloc(10 * sizeof(char ));
+    student_card_number = (char *) malloc(10 * sizeof(char ));
     float average_grade;
     puts("Enter unique id of the student");
     scanf("%d", &id);
     puts("Enter student's name");
     scanf("%s", name);
     puts("Enter student id");
-    scanf("%s", student_id);
+    scanf("%s", student_card_number);
     puts("Enter average grade");
     scanf("%f", &average_grade);
     if (id_uniqueness_check(id, p_database, number_of_students)) {
-        p_database[number_of_students].id = id;
-        p_database[number_of_students].name = name;
-        p_database[number_of_students].student_id = student_id;
-        p_database[number_of_students].average_grade = average_grade;
+        Student_t student = {id, name, student_card_number, average_grade};
+        p_database[number_of_students] = student;
     } else
-        puts("ID is not unique");                        // <---- Test in a while loop
+        puts("ID is not unique!\n");
 }
 
 void delete_student(Student_t *p_database) {
@@ -46,31 +44,30 @@ void delete_student(Student_t *p_database) {
     scanf("%d", &id);
     int index = id_index(id, p_database);
     free(p_database[index].name);
-    free(p_database[index].student_id);
-    if (index != -1) {                                      // <---- Change to just if (index == -1)
+    free(p_database[index].student_card_number);
+    if (index != -1) {
         for (int i = index; i < DB_CAPACITY - 1; i++) {
             p_database[i] = p_database[i + 1];
         }
     } else {
-        puts("ID not found in this database");
-        exit(EXIT_FAILURE);                                 // <---- Maybe continue while loop
+        puts("ID not found in this database!");
     }
 }
 
 void student_info(Student_t *p_database) {
     int id;
-    puts("Enter student's id");
+    puts("Enter student's ID");
     scanf("%d", &id);
     int index = id_index(id, p_database);
-    if (index != -1) {                                          // <---- Change to just if (index == -1)
+    if (index != -1) {
         char *name = p_database[index].name;
-        char *student_id = p_database[index].student_id;
+        char *student_id = p_database[index].student_card_number;
         float average_grade = p_database[index].average_grade;
         printf("Student with id: %d\nName: %s\nStudent id: %s\nAverage grade %f\n",
                id, name, student_id, average_grade);
     } else {
         printf("%d", index);
-        puts("ID not found in this database");// <---- Maybe continue while loop
+        puts("ID not found in this database");
     }
 }
 

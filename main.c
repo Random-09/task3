@@ -35,15 +35,15 @@ int main() {
                 running = false;
                 break;
             default:
-                puts("Incorrect input");
+                puts("Incorrect input!");
                 break;
         }
     }
+    free(database);
 }
 
 
 // TODO
-// Разобраться с поинтерами
 // Проверка на дурака везде, как в main
 
 
