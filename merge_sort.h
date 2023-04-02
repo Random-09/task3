@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include "database.h"
 
-void merge(int arr[], int l, int m, int r);
+void merge(Student_t *array, int left, int middle, int right);
 
-void mergeSort(int arr[], int l, int r);
+void merge_sort(Student_t *array, int left, int right);
 
 #endif

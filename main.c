@@ -28,7 +28,7 @@ int main() {
                 student_info(database);
                 break;
             case PRINT_AVERAGE_GRADES:
-                merge_sort(database, number_of_students);
+                merge_sort(database, 0, number_of_students - 1);
                 print_average_grades(database, number_of_students);
                 break;
             case EXIT:

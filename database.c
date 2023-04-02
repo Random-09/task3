@@ -78,6 +78,6 @@ void print_average_grades(Student_t *p_database, int number_of_students) {
     for (int i = 0; i < number_of_students; i++) {
         char *name = p_database[i].name;
         float average_grade = p_database[i].average_grade;
-        printf("%s: %f", name, average_grade);
+        printf("%s: %.1f\n", name, average_grade);
     }
 }
