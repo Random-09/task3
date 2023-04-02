@@ -61,13 +61,13 @@ void student_info(Student_t *p_database) {
     int index = id_index(id, p_database);
     if (index != -1) {
         char *name = p_database[index].name;
-        char *student_id = p_database[index].student_card_number;
+        char *student_card_number = p_database[index].student_card_number;
         float average_grade = p_database[index].average_grade;
         printf("Student with id: %d\nName: %s\nStudent id: %s\nAverage grade %f\n",
-               id, name, student_id, average_grade);
+               id, name, student_card_number, average_grade);
     } else {
         printf("%d", index);
-        puts("ID not found in this database");
+        puts("ID not found in this database!\n");
     }
 }
 

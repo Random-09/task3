@@ -12,6 +12,8 @@ int main() {
     char input;
     int choice;
     while (running) {
+        if (number_of_students == DB_CAPACITY)                  // <---- check for full capacity!
+            printf("Database is full!");
         printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
         scanf("%s", &input);
         choice = strtol(&input, NULL, 10);
