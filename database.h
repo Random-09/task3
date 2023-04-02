@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DB_CAPACITY 50
+
 typedef struct {
     int id;
     char *name;
@@ -25,7 +27,7 @@ int id_index(int id, Student_t *p_database);
 
 void add_student(Student_t *p_database, int current_index);
 
-void delete_student(Student_t *p_database, int number_of_students);
+void delete_student(Student_t *p_database);
 
 void student_info(Student_t *p_database);
 

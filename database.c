@@ -2,7 +2,6 @@
 
 int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
     for (int i = 0; i < number_of_students; i++) {
-        printf("#%d#\n", i);
         if (p_database[i].id == id)
             return 0;
     }
@@ -11,7 +10,6 @@ int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
 
 int id_index(int id, Student_t *p_database) {
     for (int i = 0; i < 50; i++) {
-        printf("%d*\n", id);
         if (p_database[i].id == id)
             return i;
     }
@@ -33,7 +31,6 @@ void add_student(Student_t *p_database, int number_of_students) {
     scanf("%s", student_id);
     puts("Enter average grade");
     scanf("%f", &average_grade);
-    printf("!%f!\n", average_grade);
     if (id_uniqueness_check(id, p_database, number_of_students)) {
         p_database[number_of_students].id = id;
         p_database[number_of_students].name = name;
@@ -43,13 +40,15 @@ void add_student(Student_t *p_database, int number_of_students) {
         puts("ID is not unique");                        // <---- Test in a while loop
 }
 
-void delete_student(Student_t *p_database, int number_of_students) {
+void delete_student(Student_t *p_database) {
     puts("Enter unique ID of the student");
     int id;
     scanf("%d", &id);
     int index = id_index(id, p_database);
-    if (index != -1) {
-        for (int i = index; i < number_of_students - 1; i++) {
+    free(p_database[index].name);
+    free(p_database[index].student_id);
+    if (index != -1) {                                      // <---- Change to just if (index == -1)
+        for (int i = index; i < DB_CAPACITY - 1; i++) {
             p_database[i] = p_database[i + 1];
         }
     } else {

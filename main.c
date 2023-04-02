@@ -8,30 +8,24 @@ int main() {
     int running = true;
     int number_of_students = 0;
     Student_t *database;
-    database = (Student_t *) malloc(50 * (sizeof(Student_t)));
+    database = (Student_t *) malloc(DB_CAPACITY * (sizeof(Student_t)));
     char input;
     int choice;
     while (running) {
         printf("1. Add student\n2. Delete student\n3. Student info\n4. Print average grades\n5. Exit\n");
-        printf("^%d^\n", database[0].id);
         scanf("%s", &input);
         choice = strtol(&input, NULL, 10);
         switch (choice) {
             case ADD_STUDENT:
                 add_student(database, number_of_students);
-                printf("^%d^\n", database[0].id);
                 number_of_students++;
                 break;
             case DELETE_STUDENT:
-                delete_student(database, number_of_students);
+                delete_student(database);
                 number_of_students--;
                 break;
             case STUDENT_INFO:
-                for (int i = 0; i < 50; i++) {
-                    printf("%s\n", database[i].student_id);
-                }
                 student_info(database);
-                printf("^^^^%d^^^^\n", database[0].id);
                 break;
             case PRINT_AVERAGE_GRADES:
                 merge_sort(database, number_of_students);
