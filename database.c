@@ -2,7 +2,7 @@
 
 int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
     for (int i = 0; i < number_of_students; i++) {
-        printf("%d", i);
+        printf("#%d#\n", i);
         if (p_database[i].id == id)
             return 0;
     }
@@ -11,6 +11,7 @@ int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
 
 int id_index(int id, Student_t *p_database) {
     for (int i = 0; i < 50; i++) {
+        printf("%d*\n", id);
         if (p_database[i].id == id)
             return i;
     }
@@ -19,7 +20,10 @@ int id_index(int id, Student_t *p_database) {
 
 void add_student(Student_t *p_database, int number_of_students) {
     int id;
-    char name[16], student_id[7];
+    char *name;
+    char *student_id;
+    name = (char *) malloc(10 * sizeof(char ));
+    student_id = (char *) malloc(10 * sizeof(char ));
     float average_grade;
     puts("Enter unique id of the student");
     scanf("%d", &id);
@@ -56,17 +60,18 @@ void delete_student(Student_t *p_database, int number_of_students) {
 
 void student_info(Student_t *p_database) {
     int id;
-    scanf("Enter student's id\n%d", &id);
+    puts("Enter student's id");
+    scanf("%d", &id);
     int index = id_index(id, p_database);
     if (index != -1) {                                          // <---- Change to just if (index == -1)
         char *name = p_database[index].name;
         char *student_id = p_database[index].student_id;
         float average_grade = p_database[index].average_grade;
-        printf("Student with id: %d\nName: %s\nStudent id:%s\nAverage grade%f\n",
+        printf("Student with id: %d\nName: %s\nStudent id: %s\nAverage grade %f\n",
                id, name, student_id, average_grade);
     } else {
-        puts("ID not found in this database");
-        exit(EXIT_FAILURE);                                 // <---- Maybe continue while loop
+        printf("%d", index);
+        puts("ID not found in this database");// <---- Maybe continue while loop
     }
 }
 
