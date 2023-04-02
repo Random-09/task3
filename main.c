@@ -19,11 +19,9 @@ int main() {
         switch (choice) {
             case ADD_STUDENT:
                 add_student(database, &number_of_students);
-                number_of_students++;
                 break;
             case DELETE_STUDENT:
                 delete_student(database, &number_of_students);
-                number_of_students--;
                 break;
             case STUDENT_INFO:
                 student_info(database);
@@ -45,7 +43,7 @@ int main() {
 
 
 // TODO
-// Проверка на дурака везде, как в main
+// Доделать проверки
 
 
 

@@ -8,6 +8,24 @@ int id_uniqueness_check(int id, Student_t *p_database, int number_of_students) {
     return 1;
 }
 
+int int_check(char data[DATA_LEN]) {
+    for (int i = 0; i < strlen(data); i++) {
+        if (!isdigit(data[i]))
+            return 0;
+    }
+    return 1;
+}
+
+int float_check(char data[DATA_LEN]) {
+    for (int i = 0; i < strlen(data); i++) {
+        if (isdigit(data[i]) || data[i] == '.')
+            continue;
+        else
+            return 0;
+    }
+    return 1;
+}
+
 int id_index(int id, Student_t *p_database) {
     for (int i = 0; i < 50; i++) {
         if (p_database[i].id == id)
@@ -17,20 +35,31 @@ int id_index(int id, Student_t *p_database) {
 }
 
 void add_student(Student_t *p_database, int *number_of_students) {
-    int id;
+    char id_str[DATA_LEN];
     char *name;
     char *student_card_number;
-    name = (char *) malloc(10 * sizeof(char ));
-    student_card_number = (char *) malloc(10 * sizeof(char ));
-    float average_grade;
-    puts("Enter student's ID");
-    scanf("%d", &id);
-    puts("Enter student's name");
-    scanf("%s", name);
-    puts("Enter student id");
-    scanf("%s", student_card_number);
-    puts("Enter average grade");
-    scanf("%f", &average_grade);
+    char average_grade_str[DATA_LEN];
+    name = (char *) malloc(10 * sizeof(char));
+    student_card_number = (char *) malloc(10 * sizeof(char));
+    do {
+        puts("Enter student's ID (can't be zero)");
+        scanf("%s", id_str);
+    } while (!int_check(id_str) || strlen(id_str) > DATA_LEN);
+    do {
+        puts("Enter student's name");
+        scanf("%s", name);
+    } while (strlen(name) > DATA_LEN);
+    do {
+        puts("Enter student id");
+        scanf("%s", student_card_number);
+    } while (strlen(student_card_number) > DATA_LEN);
+    do {
+        puts("Enter average grade (is zero by default)");
+        scanf("%s", average_grade_str);
+    } while (!float_check(average_grade_str) || strlen(average_grade_str) > DATA_LEN);
+
+    int id = strtol(id_str, NULL, 10);
+    float average_grade = strtof(average_grade_str, NULL);
     if (id_uniqueness_check(id, p_database, *number_of_students)) {
         Student_t student = {id, name, student_card_number, average_grade};
         p_database[*number_of_students] = student;
